@@ -1,0 +1,12 @@
+{
+    "name": "user/composer-lab-assets",
+    "authors": [
+        {
+            "name": "3A417029",
+            "email": "howardzhu0709@outlook.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon":"^1.21"
+    }
+}

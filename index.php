@@ -2,7 +2,11 @@
 
 require __DIR__.'/bootstrap.php';
 
+use Carbon\Carbon;
+Carbon::setlocale('zh-TW');
+
 // connect to dabase
+
 try {
     $dsn = 'mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_DATABASE.';charset='.DB_CHARSET;
     $pdo = new PDO($dsn, DB_USERNAME, DB_PASSWORD);
@@ -11,6 +15,7 @@ try {
     die();
 }
 
+//  echo Carbon::setlocale('zh-TW')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +86,7 @@ try {
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">文章清單
-                    <small>{今日日期}</small>
+                    <small><?=Carbon::now()->toDateString();  ?></small>
                 </h1>
             </div>
         </div>
@@ -101,7 +106,7 @@ try {
                 <p><?=mb_substr($row->content, 0, 130, "utf-8"),'…'?></p>
                 <p class="text-right">
                     <span class="glyphicon glyphicon-time"></span>
-                    發表於 <?=$row->created_at?>
+                    發表於 <?=Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->diffForHumans()?>
                 </p>
             </div>
             <?php endwhile; ?>
